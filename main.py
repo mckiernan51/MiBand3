@@ -22,6 +22,11 @@ def detail_info():
     print 'Time:', band.get_current_time()
     print 'Steps:', band.get_steps()
     raw_input('Press Enter to continue')
+
+def sendSteps():
+    print'Steps', band.get_steps()
+    raw_input('Press Enter to continue')
+
 def custom_message():
     band.send_custom_alert(5)
 
@@ -69,6 +74,7 @@ miss_call_alert = FunctionItem("Send a Missed Call Notification", custom_missed_
 change_date_time = FunctionItem("Change Date and Time", change_date)
 heart_beat_menu = FunctionItem("Get Heart BPM", heart_beat)
 dfu_update_menu = FunctionItem("DFU Update", updateFirmware)
+send_steps_menu = FunctionItem("Send Steps", sendSteps)
 
 menu.append_item(detail_menu)
 menu.append_item(call_notif)
@@ -79,4 +85,6 @@ menu.append_item(change_date_time)
 menu.append_item(miss_call_alert)
 menu.append_item(heart_beat_menu)
 menu.append_item(dfu_update_menu)
+menu.append_item(send_steps_menu)
+
 menu.show()
