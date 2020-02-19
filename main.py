@@ -24,7 +24,7 @@ def detail_info():
     raw_input('Press Enter to continue')
 
 def sendSteps():
-    print'Steps', band.get_steps()
+    print'Steps', band.get_raw_steps()
     raw_input('Press Enter to continue')
 
 def custom_message():
