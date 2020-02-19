@@ -1,6 +1,7 @@
 import struct
 import time
 import logging
+from router import RouterData
 from datetime import datetime
 from Crypto.Cipher import AES
 from Queue import Queue, Empty
@@ -280,12 +281,17 @@ class MiBand3(Peripheral):
         fat_gramms = struct.unpack('h', a[2:4])[0] if len(a) >= 4 else None
         # why only 1 byte??
         callories = struct.unpack('b', a[9])[0] if len(a) >= 10 else None
-        return {
+
+
+        values = {
             "steps": steps,
             "meters": meters,
             "fat_gramms": fat_gramms,
             "callories": callories
         }
+       
+        router.sendData(values)
+        return values
 
     def get_raw_steps(self):
         char = self.svc_1.getCharacteristics(UUIDS.CHARACTERISTIC_STEPS)[0]
@@ -366,7 +372,7 @@ class MiBand3(Peripheral):
           while True:
             c = f.read(20) #takes 20 bytes :D
             if not c:
-              print "Update Over"
+              print("Update Over")
               break
             print('Writing Resource', c.encode('hex'))
             char1.write(c)
@@ -454,3 +460,5 @@ class MiBand3(Peripheral):
             trigger = b'\x01\x01' + ts + b'\x00\x08'
             self._char_fetch.write(trigger, False)
             self.active = True
+
+router = RouterData()
