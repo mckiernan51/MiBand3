@@ -288,9 +288,9 @@ class MiBand3(Peripheral):
         }
 
     def get_raw_steps(self):
-    char = self.svc_1.getCharacteristics(UUIDS.CHARACTERISTIC_STEPS)[0]
-    a = char.read()
-    return a
+        char = self.svc_1.getCharacteristics(UUIDS.CHARACTERISTIC_STEPS)[0]
+        a = char.read()
+        return a
 
     def send_alert(self, _type):
         svc = self.getServiceByUUID(UUIDS.SERVICE_ALERT)
