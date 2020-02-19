@@ -287,6 +287,11 @@ class MiBand3(Peripheral):
             "callories": callories
         }
 
+    def get_raw_steps(self):
+    char = self.svc_1.getCharacteristics(UUIDS.CHARACTERISTIC_STEPS)[0]
+    a = char.read()
+    return a
+
     def send_alert(self, _type):
         svc = self.getServiceByUUID(UUIDS.SERVICE_ALERT)
         char = svc.getCharacteristics(UUIDS.CHARACTERISTIC_ALERT)[0]
