@@ -286,11 +286,11 @@ class MiBand3(Peripheral):
         values = {
             "steps": steps,
             "meters": meters,
-            "fat_gramms": fat_gramms,
-            "callories": callories
+            "fat": fat_gramms,
+            "calories": callories
         }
        
-        router.sendData(values)
+        router.sendStats(values)
         return values
 
     def get_raw_steps(self):
